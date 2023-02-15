@@ -1,0 +1,12 @@
+读取文件
+
+def j_reads(file):
+    with open(file, "r") as f:
+        contents = f.readlines()
+    return contents
+
+
+def j_read(file):
+    with open(file, "r") as f:
+        content = f.readline()
+    return content
