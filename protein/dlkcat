@@ -1,0 +1,42 @@
+预测酶的dlkcat值，这一阶段，写了dlckat的排序功能
+
+
+from tname import *
+from Rfile import *
+
+def Sort_Dlkcat(file):
+    contents = j_reads(file.name)
+    dlkcats = []  # 存储kcat值
+    # dlkcat sort
+    for i in range(2, len(contents)):
+        content = contents[i].split()
+        dlkcats.append(float(content[3]))
+
+    sorted_dlkcat = []  # 按kcat值从大到小对其索引进行排序
+    sorted_dlkcat = sorted(range(len(dlkcats)), key=lambda k: dlkcats[k], reverse=True)
+
+    name = Name()
+    name = name + r"kcat_sort.fa"  # 结果文件名称
+
+    # 第一条序列单独写入
+    with open(name, "a") as f:
+        content = contents[1].split()
+        f.write(content[0])
+        f.write("\t")
+        f.write("Kcat value=")
+        f.write(content[3])
+        f.write("\n")
+        f.write(content[2])
+        f.write("\n")
+    for i in range(0, len(dlkcats)):
+        with open(name, "a") as f:
+            content = contents[sorted_dlkcat[i] + 2].split()
+            f.write(content[0])
+            f.write("\t")
+            f.write("Kcat value=")
+            f.write(content[3])
+            f.write("\n")
+            f.write(content[2])
+            f.write("\n")
+
+    return name
