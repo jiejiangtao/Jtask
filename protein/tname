@@ -1,0 +1,8 @@
+返回当前时间
+
+import time
+
+
+def Name():
+    name = time.strftime('%m-%d-%H_%M', time.localtime())  # %Y-%m-%d-%H:%M:%S 冒号会报错
+    return name
